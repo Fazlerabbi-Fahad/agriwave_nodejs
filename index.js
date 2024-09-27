@@ -44,11 +44,19 @@ async function run() {
       res.send(results);
     });
 
+    app.get("/fielddata/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+
+      const query = { country: id };
+      const results = await fieldDataCollection.find(query).toArray();
+      res.send(results);
+    });
+
     app.get("/countries/:id", async (req, res) => {
       const id = req.params.id;
       const intId = parseInt(id);
       const query = { continentId: intId };
-
       const results = await countriesCollection.find(query).toArray();
       res.send(results);
     });
