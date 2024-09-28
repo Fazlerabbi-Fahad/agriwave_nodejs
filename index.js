@@ -53,6 +53,12 @@ async function run() {
       res.send(results);
     });
 
+    app.get("/countries", async (req, res) => {
+      const query = {};
+      const results = await countriesCollection.find(query).toArray();
+      res.send(results);
+    });
+
     app.get("/countries/:id", async (req, res) => {
       const id = req.params.id;
       const intId = parseInt(id);
